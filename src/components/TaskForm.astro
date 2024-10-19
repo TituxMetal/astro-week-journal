@@ -1,0 +1,25 @@
+---
+import { actions, isInputError } from 'astro:actions'
+import Button from '~ui/Button.astro'
+import Input from '~ui/Input.astro'
+import Textarea from '~ui/Textarea.astro'
+
+const result = Astro.getActionResult(actions.createTask)
+const inputErrors = isInputError(result?.error) ? result.error.fields : {}
+---
+
+<form
+  action={'/tasks' + actions.createTask}
+  method='POST'
+  class='mt-4 h-fit w-full space-y-4 rounded-md border-2 border-gray-600 p-4'
+>
+  <h2 class='mb-4 text-2xl font-bold'>Add or Update Task</h2>
+  {}
+  <Input name='title' placeholder='Task Title' required transition:persist />
+  {inputErrors.title && <p class='font-bold text-red-400'>{inputErrors.title}</p>}
+  <Textarea name='description' placeholder='Task Description' transition:persist />
+  {inputErrors.description && <p class='font-bold text-red-400'>{inputErrors.description}</p>}
+  <Input type='date' name='dueDate' transition:persist />
+  {inputErrors.dueDate && <p class='font-bold text-red-400'>{inputErrors.dueDate}</p>}
+  <Button type='submit'>Add Task</Button>
+</form>
