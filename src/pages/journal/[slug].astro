@@ -1,0 +1,95 @@
+---
+import { Markdown } from '@astropub/md'
+import { Icon } from 'astro-icon/components'
+import BaseLayout from '~/layouts/BaseLayout.astro'
+
+interface Article {
+  slug: string
+  title: string
+  date: string
+  tags: string[]
+  content: string
+}
+
+const { slug } = Astro.params
+
+const articles: Article[] = [
+  {
+    slug: 'article-1',
+    title: 'Article 1',
+    date: '2024-01-01',
+    tags: ['astro', 'javascript', 'tailwind'],
+    content: `
+      Generics provide a way to make components work with any data type and not restrict to one data type. This allows for greater flexibility and reusability of components.
+
+## Benefits of Using Generics
+
+- **Type Safety**: Ensures that types are consistent across your code.
+- **Reusability**: Write components that can work with any data type.
+- **Maintainability**: Easier to manage and update code.
+
+## Example
+
+\`\`\`typescript
+function identity<T>(arg: T): T {
+  return arg
+}
+
+const result = identity<string>("Hello, TypeScript!")
+\`\`\`
+
+In the above example, the \`identity\` function uses a generic type \`T\` to allow the function to accept any type of argument and return the same type.
+
+## Conclusion
+
+Generics are a powerful feature in TypeScript that enhance the flexibility and robustness of your code. By leveraging generics, you can create highly reusable and type-safe components.
+      `
+  },
+  {
+    slug: 'article-2',
+    title: 'Article 2',
+    date: '2024-01-02',
+    tags: ['astro', 'typescript', 'prisma'],
+    content:
+      'Slow-carb authentic ascot hella tousled four loko venmo iceland readymade sus williamsburg trust fund locavore food truck glossier.  Farm-to-table meggings schlitz, hoodie man bun food truck franzen glossier chillwave vinyl cred.  Vibecession letterpress af, chambray wayfarers brunch grailed.  Retro tbh before they sold out viral vinyl.  Slow-carb cold-pressed cardigan YOLO pop-up ethical 3 wolf moon chambray authentic hammock fingerstache.'
+  },
+  {
+    slug: 'article-3',
+    title: 'Article 3',
+    date: '2024-01-03',
+    tags: ['redwood', 'typescript', 'tailwind', 'react', 'prisma'],
+    content:
+      'Messenger bag readymade cloud bread vegan.  Gatekeep gorpcore adaptogen sustainable pour-over JOMO la croix hoodie shoreditch neutral milk hotel green juice cupping.  Neutra mixtape semiotics, flexitarian authentic prism disrupt chartreuse DIY 3 wolf moon grailed fanny pack.  Marfa try-hard sustainable schlitz knausgaard bodega boys tote bag.  Fanny pack lyft squid everyday carry, pabst kinfolk venmo schlitz cloud bread affogato neutral milk hotel.  Keffiyeh grailed biodiesel subway tile XOXO pug.'
+  }
+]
+const article = articles.find(article => article.slug === slug) as Article
+
+console.log(typeof article.content)
+---
+
+<BaseLayout title={`Journal | ${article.title}`}>
+  <header>
+    <nav>
+      <a
+        class='flex w-fit items-center justify-center gap-1 rounded-md bg-sky-400 px-3 py-2 font-semibold text-zinc-900 outline-none ring-offset-4 hover:bg-sky-400/80 hover:ring-2 hover:ring-sky-400/80 hover:ring-offset-zinc-900 focus:bg-sky-400/80 focus:ring-2 focus:ring-sky-400/80 focus:ring-offset-zinc-900'
+        href='/journal'
+        aria-label='Go back to the journal'
+      >
+        <Icon name='arrow-left' class='size-6' aria-label='Go back icon' />
+        <span class='text-lg leading-relaxed'>Go back to journal</span>
+      </a>
+    </nav>
+  </header>
+  <main class='mt-8 bg-sky-700 p-4 md:mx-auto md:max-w-screen-md md:rounded-lg'>
+    <h2 class='mb-4 text-2xl font-semibold md:text-3xl'>{article.title}</h2>
+    <div class='my-6 flex flex-col space-y-2 text-sm text-zinc-200'>
+      <time class='px-2 py-1' datetime={article.date}>{article.date}</time>
+      <ul class='flex flex-wrap gap-2'>
+        {article.tags.map(tag => <li class='rounded-md bg-sky-900 px-2 py-1'>{tag}</li>)}
+      </ul>
+    </div>
+    <article class='prose-sm prose-neutral md:prose-lg'>
+      <Markdown of={article.content} />
+    </article>
+  </main>
+</BaseLayout>
