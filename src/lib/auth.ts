@@ -5,7 +5,7 @@ import { prisma } from './prisma'
 
 // Create Lucia instance
 export const lucia = new Lucia(new PrismaAdapter(prisma.session, prisma.user), {
-  sessionExpiresIn: new TimeSpan(1, 'h'),
+  sessionExpiresIn: new TimeSpan(1, 'w'),
   sessionCookie: {
     name: 'lucia-astro-auth-session',
 
