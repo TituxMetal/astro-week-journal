@@ -22,7 +22,7 @@
     "@lucia-auth/adapter-prisma": "^4.0.1",
     "@prisma/adapter-libsql": "^5.21.1",
     "@prisma/client": "^5.21.1",
-    "astro": "4.16.7",
+    "astro": "4.16.8",
     "astro-icon": "^1.1.1",
     "lucia": "^3.2.1",
     "react": "^18.3.1",
