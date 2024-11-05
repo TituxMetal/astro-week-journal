@@ -2164,10 +2164,10 @@ astro-icon@^1.1.1:
     "@iconify/types" "^2.0.0"
     "@iconify/utils" "^2.1.30"
 
-astro@4.16.8:
-  version "4.16.8"
-  resolved "https://registry.yarnpkg.com/astro/-/astro-4.16.8.tgz#e097a340e0949177390f8f804f267c247121a840"
-  integrity sha512-BRWFP0UQ8gkOr90KQW7oooedtgCk/j91pyv1WQUmgZwMUZk/v0HJRiddAZgvGCECOnmZFc9ZqRZnBsAMUgApNQ==
+astro@4.16.9:
+  version "4.16.9"
+  resolved "https://registry.yarnpkg.com/astro/-/astro-4.16.9.tgz#a3ecd8029c5e303f4f23c98379e99709d4071862"
+  integrity sha512-DFYzPZooVArKSGu969BBByUV44tJMVDPGKxgqWNFBaIrkvGljdVUqQSVwD+/iPYACoSkI8BRYvDMEBDkathIUQ==
   dependencies:
     "@astrojs/compiler" "^2.10.3"
     "@astrojs/internal-helpers" "0.4.1"
