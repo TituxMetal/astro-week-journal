@@ -18,7 +18,7 @@
     "@astrojs/react": "^4.0.0",
     "@astrojs/tailwind": "6.0.0",
     "@astropub/md": "^1.0.0",
-    "@libsql/client": "^0.14.0",
+    "@libsql/client": "^0.15.0",
     "@lucia-auth/adapter-prisma": "^4.0.1",
     "@prisma/adapter-libsql": "^6.0.0",
     "@prisma/client": "^6.0.0",
