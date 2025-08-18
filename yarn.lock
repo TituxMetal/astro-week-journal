@@ -1155,11 +1155,11 @@
     "@jridgewell/sourcemap-codec" "^1.4.14"
 
 "@libsql/client@^0.15.0":
-  version "0.15.11"
-  resolved "https://registry.yarnpkg.com/@libsql/client/-/client-0.15.11.tgz#a21bf032cfb31677548845ad7d9a0a0af823d9cc"
-  integrity sha512-JB8RWRs+cAbHX35/dQ9wD3m4W5EVGevq1fFqiHKTT4Pa5HR7WrcGRVT+8NL2M7gtTlOvyPh9zzms2DPLBCswig==
+  version "0.15.12"
+  resolved "https://registry.yarnpkg.com/@libsql/client/-/client-0.15.12.tgz#8e0888a4932f3981250add6b47de6dd85e8881b0"
+  integrity sha512-JIqB0XsNrqYqBQZuhcgZdTcQoNOoQ5AMF+1yxc7vcZrLtm42QJwRazmTuBfyDwtWASEmVgjxeaLF4NT1iyVX8g==
   dependencies:
-    "@libsql/core" "^0.15.11"
+    "@libsql/core" "^0.15.12"
     "@libsql/hrana-client" "^0.7.0"
     js-base64 "^3.7.5"
     libsql "^0.5.15"
@@ -1176,10 +1176,10 @@
     libsql "^0.3.10"
     promise-limit "^2.7.0"
 
-"@libsql/core@^0.15.11":
-  version "0.15.11"
-  resolved "https://registry.yarnpkg.com/@libsql/core/-/core-0.15.11.tgz#94406a2e0888dd674be41da23d4efae1c8834c90"
-  integrity sha512-DQDYnEhCSYOsx30ASlOGuOqcQhvwELhOS2qM4dnIP+ZhKki2epZU1j5VZSNeQlrQXHkByMcWBy+wt7tBNx/9uA==
+"@libsql/core@^0.15.12":
+  version "0.15.12"
+  resolved "https://registry.yarnpkg.com/@libsql/core/-/core-0.15.12.tgz#456f7d2aa5c779c7cf6259311e990e83d4bdb5da"
+  integrity sha512-S3tF6885ZizVjfym7f8SevL2VId/+DzxiKmP5zFbrhA8oMLh2XH8bYXChmhab7o9qUSHx+XjK4jCFpUwR5g+Ig==
   dependencies:
     js-base64 "^3.7.5"
 
