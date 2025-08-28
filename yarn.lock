@@ -2230,10 +2230,10 @@ astro-icon@^1.1.1:
     "@iconify/types" "^2.0.0"
     "@iconify/utils" "^2.1.30"
 
-astro@5.13.3:
-  version "5.13.3"
-  resolved "https://registry.yarnpkg.com/astro/-/astro-5.13.3.tgz#5f5aface205a1b41d6e098a35662a02ea89e35fc"
-  integrity sha512-V0mUOUK70UZ7xqXp5Noqse/SREU0P756KgFufBEluq5LkmBejzC2GENMUA2Na+PFwUjemElJtRlpKyrnKpFhSQ==
+astro@5.13.4:
+  version "5.13.4"
+  resolved "https://registry.yarnpkg.com/astro/-/astro-5.13.4.tgz#3a90a6a5fde74c2de445f86a13b13d10a42c364a"
+  integrity sha512-Mgq5GYy3EHtastGXqdnh1UPuN++8NmJSluAspA5hu33O7YRs/em/L03cUfRXtc60l5yx5BfYJsjF2MFMlcWlzw==
   dependencies:
     "@astrojs/compiler" "^2.12.2"
     "@astrojs/internal-helpers" "0.7.2"
