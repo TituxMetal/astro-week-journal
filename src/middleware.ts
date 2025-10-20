@@ -5,8 +5,8 @@ import { libsql } from './lib/prisma'
 
 const dbSync = async (_: unknown, next: MiddlewareNext) => {
   if (import.meta.env.DEV) {
-    console.log('Sync database with Turso')
-    await libsql.sync()
+    console.log('Database sync temporarily disabled')
+    // await libsql.sync()
   }
 
   return next()
