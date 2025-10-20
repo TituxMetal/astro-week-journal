@@ -1,5 +1,5 @@
 ---
-// import { actions } from 'astro:actions'
+import { actions } from 'astro:actions'
 import BaseLayout from '~/layouts/BaseLayout.astro'
 
 const { session } = Astro.locals
@@ -11,7 +11,7 @@ if (!session) {
 
 <BaseLayout title='Journal'>
   <h1>Journal</h1>
-  <form method='POST' action="/logout">
+  <form method='POST' action={actions.logout}>
     <button aria-label='Logout from your account'>Logout</button>
   </form>
   <a href='/' aria-label='Go back to the home page'>Go home</a>
