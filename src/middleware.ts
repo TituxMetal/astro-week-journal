@@ -1,7 +1,6 @@
 import type { APIContext, MiddlewareNext } from 'astro'
 import { sequence } from 'astro:middleware'
 import { lucia } from './lib/auth'
-import { libsql } from './lib/prisma'
 
 const dbSync = async (_: unknown, next: MiddlewareNext) => {
   if (import.meta.env.DEV) {
