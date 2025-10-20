@@ -5,12 +5,6 @@ import path from 'node:path'
 
 const dbPath = path.join(process.cwd(), 'prisma', 'replica.db')
 
-// Debug environment variables
-console.log('Environment variables:', {
-  TURSO_AUTH_TOKEN: process.env.TURSO_AUTH_TOKEN ? 'SET' : 'UNDEFINED',
-  TURSO_DATABASE_URL: process.env.TURSO_DATABASE_URL ? 'SET' : 'UNDEFINED'
-})
-
 // 2. Instantiate libSQL (temporarily without sync for testing)
 export const libsql = createClient({
   url: `file://${dbPath}`
