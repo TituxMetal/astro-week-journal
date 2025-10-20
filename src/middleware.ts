@@ -4,6 +4,10 @@ import { lucia } from './lib/auth'
 
 const dbSync = async (_: unknown, next: MiddlewareNext) => {
   if (import.meta.env.DEV) {
+    // TODO: Database sync is temporarily disabled due to configuration issues with Prisma adapter 6.17.1
+    // and libSQL client 0.15.15. The adapter fails to properly handle TURSO_DATABASE_URL and TURSO_AUTH_TOKEN
+    // environment variables, causing "URL_INVALID: The URL 'undefined' is not in a valid format" errors.
+    // Re-enable `await libsql.sync()` when adapter configuration is fixed.
     console.log('Database sync temporarily disabled')
     // await libsql.sync()
   }
