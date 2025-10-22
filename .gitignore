@@ -1,24 +1,26 @@
-# build output
-dist/
-# generated types
-.astro/
-
 # dependencies
 node_modules/
+.yarn/install-state.gz
 
-# logs
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-pnpm-debug.log*
-
+# custom config files
+.yarnrc.yml
 
 # environment variables
-.env
-.env.production
+.env*
+!.env.example
 
-prisma/*.db
-prisma/*-journal
-prisma/*_index
-prisma/*.db-shm
-prisma/*.db-wal
+# turbo
+.turbo
+
+# build
+dist
+.astro
+
+# prisma
+*.db*
+
+# TypeScript incremental compilation
+*.tsbuildinfo
+
+# coverage
+coverage
