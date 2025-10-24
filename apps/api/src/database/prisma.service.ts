@@ -10,10 +10,14 @@ export class PrismaService extends PrismaClient implements OnModuleInit, OnModul
       url: 'file:./prisma/replica.db'
     })
 
+    // Determine log levels based on environment
+    const logLevels: Array<'query' | 'info' | 'warn' | 'error'> =
+      process.env.NODE_ENV === 'production' ? ['warn', 'error'] : ['query', 'info', 'warn', 'error']
+
     // Initialize PrismaClient with adapter
     super({
       adapter,
-      log: ['query', 'info', 'warn', 'error']
+      log: logLevels
     })
   }
 
