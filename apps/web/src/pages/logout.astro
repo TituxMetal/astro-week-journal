@@ -1,0 +1,16 @@
+---
+import { authApi } from '~/lib/api/auth'
+
+// Get cookies from incoming request
+const cookieHeader = Astro.request.headers.get('cookie') || ''
+
+// Call logout API
+try {
+  await authApi.signOut(cookieHeader)
+} catch {
+  // Ignore errors, redirect anyway
+}
+
+// Redirect to login
+return Astro.redirect('/login')
+---

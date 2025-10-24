@@ -1,20 +1,15 @@
 ---
-// This is a fresh minimal Astro frontend
-// NO astro:actions - all backend logic is in the NestJS API
+import BaseLayout from '~/layouts/BaseLayout.astro'
 ---
 
-<!doctype html>
-<html lang='en'>
-  <head>
-    <meta charset='utf-8' />
-    <link rel='icon' type='image/svg+xml' href='/favicon.svg' />
-    <meta name='viewport' content='width=device-width' />
-    <meta name='generator' content={Astro.generator} />
-    <title>Week Journal</title>
-  </head>
-  <body>
-    <h1>Welcome to Week Journal</h1>
-    <p>Frontend: Astro + React</p>
-    <p>Backend: NestJS API (coming soon)</p>
-  </body>
-</html>
+<BaseLayout title='Week Journal'>
+  <section class='container mx-auto px-4 py-8'>
+    <h1 class='mb-4 text-4xl font-bold'>Welcome to Week Journal</h1>
+    <p class='mb-2'>Frontend: Astro + React</p>
+    <p class='mb-4'>Backend: NestJS API (coming soon)</p>
+    <nav class='mt-8 space-x-4'>
+      <a href='/login' class='cursor-pointer text-blue-400 hover:underline'>Login</a>
+      <a href='/signup' class='cursor-pointer text-blue-400 hover:underline'>Sign Up</a>
+    </nav>
+  </section>
+</BaseLayout>
