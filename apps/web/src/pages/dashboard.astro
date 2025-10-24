@@ -1,0 +1,24 @@
+---
+import { Button } from '~/components/Button'
+import BaseLayout from '~/layouts/BaseLayout.astro'
+
+const user = Astro.locals.user
+
+if (!user) {
+  return Astro.redirect('/login')
+}
+---
+
+<BaseLayout title='Dashboard - Week Journal'>
+  <header class='mb-8 flex items-center justify-between'>
+    <h1 class='text-3xl font-bold'>Dashboard</h1>
+    <nav class='flex items-center gap-4'>
+      <span class='text-zinc-400'>Welcome, {user.name || user.email}!</span>
+      <Button as='link' href='/logout' variant='danger'>Logout</Button>
+    </nav>
+  </header>
+  <section class='rounded-lg bg-zinc-800 p-6 shadow'>
+    <h2 class='mb-4 text-xl font-semibold'>Your Week Journal</h2>
+    <p class='text-zinc-400'>Start tracking your weekly progress here!</p>
+  </section>
+</BaseLayout>

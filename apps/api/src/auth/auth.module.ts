@@ -15,4 +15,3 @@ import { createBetterAuthConfig } from './infrastructure/config/betterAuth.confi
   ]
 })
 export class AuthModule {}
-
