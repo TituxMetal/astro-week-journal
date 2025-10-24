@@ -43,7 +43,13 @@ const request = async <T>(endpoint: string, options?: RequestOptions): Promise<T
     throw new Error(errorMessage)
   }
 
-  return response.json()
+  // Handle empty responses (e.g., signOut endpoint)
+  const text = await response.text()
+  if (!text) {
+    return undefined as T
+  }
+
+  return JSON.parse(text) as T
 }
 
 export const apiClient = {
