@@ -61,4 +61,3 @@ export const createBetterAuthConfig = (prisma: PrismaClient): ReturnType<typeof 
  * Type helper to extract the auth instance type
  */
 export type AuthInstance = ReturnType<typeof createBetterAuthConfig>
-
