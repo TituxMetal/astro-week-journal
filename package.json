@@ -1,0 +1,24 @@
+{
+  "name": "astro-week-journal-monorepo",
+  "version": "0.0.1",
+  "private": true,
+  "description": "Astro Week Journal - Turborepo monorepo with NestJS backend and Astro frontend",
+  "scripts": {
+    "build": "turbo run build",
+    "dev": "turbo run dev",
+    "lint": "turbo run lint",
+    "typecheck": "turbo run typecheck",
+    "clean": "turbo run clean && rm -rf node_modules",
+    "format": "prettier --write \"**/*.{ts,tsx,md,json}\""
+  },
+  "devDependencies": {
+    "prettier": "^3.4.0",
+    "turbo": "^2.3.0"
+  },
+  "packageManager": "pnpm@10.18.0",
+  "engines": {
+    "node": ">=22.21.0",
+    "pnpm": ">=10.18.0"
+  }
+}
+
