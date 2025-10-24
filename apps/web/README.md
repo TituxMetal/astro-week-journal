@@ -1,46 +1,264 @@
-# Astro Starter Kit: Minimal
+# 🌐 Astro Week Journal - Web Frontend
 
-```sh
-pnpm create astro@latest -- --template minimal
-```
+The frontend application for Astro Week Journal built with **Astro 5**, **React 19**, and **Tailwind
+CSS v4**.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+This is a **presentation-only layer** that communicates with the backend exclusively via REST API.
+It has **NO database dependencies** (no Prisma, no direct database access).
 
-## 🚀 Project Structure
+> **Note**: This is part of a monorepo. For monorepo-level information and setup, see
+> [../../README.md](../../README.md).
 
-Inside of your Astro project, you'll see the following folders and files:
+---
+
+## � Overview
+
+This frontend application provides:
+
+- ✅ Server-side rendering with Astro
+- ✅ Interactive components with React
+- ✅ Responsive design with Tailwind CSS v4
+- ✅ Authentication flow (login/signup)
+- ✅ Session management via API
+- ✅ Type-safe API communication
+
+---
+
+## �️ Tech Stack
+
+- **Astro** 5.15.1 - Static site generator with SSR
+- **React** 19.2.0 - UI library for interactive components
+- **Tailwind CSS** v4.1.15 - Utility-first CSS framework
+- **TypeScript** 5.9.3 - Type-safe JavaScript
+- **ESLint** 9.38.0 - Code quality with flat config format
+- **Prettier** 3.4.0 - Code formatter
+
+---
+
+## 📁 Project Structure
 
 ```text
-/
-├── public/
+apps/web/
 ├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
+│   ├── components/          # React components
+│   │   ├── AuthForm.tsx     # Authentication form
+│   │   └── Button.tsx       # Reusable button component
+│   ├── layouts/             # Astro layouts
+│   │   ├── AuthLayout.astro # Layout for auth pages
+│   │   └── BaseLayout.astro # Base layout
+│   ├── lib/
+│   │   └── api/
+│   │       ├── client.ts    # HTTP client for backend communication
+│   │       └── auth.ts      # Authentication API methods
+│   ├── pages/               # Astro pages (routes)
+│   │   ├── index.astro      # Home page
+│   │   ├── login.astro      # Login page
+│   │   ├── signup.astro     # Signup page
+│   │   ├── dashboard.astro  # Dashboard (protected)
+│   │   └── logout.astro     # Logout handler
+│   ├── middleware.ts        # Session validation middleware
+│   ├── env.d.ts             # Environment type definitions
+│   └── styles/
+│       └── globals.css      # Global styles
+├── public/                  # Static assets
+├── astro.config.mjs         # Astro configuration
+├── tsconfig.json            # TypeScript configuration
+└── package.json             # Dependencies
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a
-route based on its file name.
+---
 
-There's nothing special about `src/components/`, but that's where we like to put any
-Astro/React/Vue/Svelte/Preact components.
+## 🚀 Getting Started
 
-Any static assets, like images, can be placed in the `public/` directory.
+### Prerequisites
 
-## 🧞 Commands
+- Node.js v22.21.0 or higher
+- pnpm v10.18.0 or higher
 
-All commands are run from the root of the project, from a terminal:
+### Installation
 
-| Command                | Action                                           |
-| :--------------------- | :----------------------------------------------- |
-| `pnpm install`         | Installs dependencies                            |
-| `pnpm dev`             | Starts local dev server at `localhost:4321`      |
-| `pnpm build`           | Build your production site to `./dist/`          |
-| `pnpm preview`         | Preview your build locally, before deploying     |
-| `pnpm astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `pnpm astro -- --help` | Get help using the Astro CLI                     |
+From the **root directory** of the monorepo:
 
-## 👀 Want to learn more?
+```bash
+pnpm install
+```
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our
-[Discord server](https://astro.build/chat).
+### Environment Variables
+
+Create `apps/web/.env.local`:
+
+```env
+PUBLIC_API_URL=http://localhost:3000
+```
+
+This variable tells the frontend where to find the backend API.
+
+### Development
+
+Start the development server from the **root directory**:
+
+```bash
+pnpm dev
+```
+
+Or run only the web app from the root directory:
+
+```bash
+pnpm --filter web dev
+```
+
+The frontend will be available at [http://localhost:4321](http://localhost:4321)
+
+---
+
+## 📦 Available Scripts
+
+For monorepo-level commands (dev, build, lint, format, typecheck, clean), see
+[../../README.md](../../README.md#-available-scripts).
+
+Run frontend-specific commands from the **root directory** using `--filter`:
+
+```bash
+pnpm --filter web dev           # Start dev server
+pnpm --filter web build         # Build for production
+pnpm --filter web preview       # Preview production build
+pnpm --filter web lint          # Lint and fix code
+pnpm --filter web lint:check    # Check linting without fixing
+pnpm --filter web typecheck     # Type check with Astro
+```
+
+---
+
+## 🏗️ Architecture
+
+### API-First Design
+
+The frontend communicates with the backend **exclusively via REST API**:
+
+- ✅ All data flows through the backend API
+- ✅ No direct database access
+- ✅ No Prisma or database dependencies
+- ✅ Easy to replace or scale independently
+
+### API Client
+
+The centralized API client (`src/lib/api/client.ts`) handles:
+
+- HTTP requests to the backend
+- Authentication cookie forwarding
+- Error handling with detailed messages
+- Type-safe request/response handling
+
+### Session Management
+
+Session validation happens in middleware (`src/middleware.ts`):
+
+- Checks session on protected routes
+- Redirects to login if not authenticated
+- Forwards cookies to backend for validation
+
+---
+
+## 🔐 Authentication Flow
+
+1. **Sign Up** - User creates account via `/signup`
+2. **Sign In** - User logs in via `/login`
+3. **Session** - Backend returns session cookie
+4. **Protected Routes** - Middleware validates session
+5. **Sign Out** - User logs out via `/logout`
+
+---
+
+## 🎨 Styling
+
+This project uses **Tailwind CSS v4** with:
+
+- Dark theme (zinc-900 background, zinc-100 text)
+- Responsive design
+- Custom color palette
+- Utility-first approach
+
+### Color Scheme
+
+- **Background**: `zinc-900`
+- **Text**: `zinc-100`
+- **Cards/Inputs**: `zinc-800`
+- **Borders**: `zinc-700`
+- **Accents**: Blue for primary actions
+
+---
+
+## 📚 Key Files
+
+### `src/lib/api/client.ts`
+
+Centralized HTTP client for all backend communication:
+
+```typescript
+// Type-safe API requests
+const response = await apiClient.post<LoginResponse>('/auth/sign-in', {
+  email,
+  password
+})
+```
+
+### `src/middleware.ts`
+
+Session validation for protected routes:
+
+```typescript
+// Redirects to login if no session
+const session = await authApi.getSession(cookieHeader)
+if (!session) {
+  return context.redirect('/login')
+}
+```
+
+### `src/components/AuthForm.tsx`
+
+Reusable authentication form component:
+
+```typescript
+<AuthForm mode='login' client:load />
+```
+
+---
+
+## 🧪 Testing
+
+Run quality checks from the **root directory**:
+
+```bash
+pnpm format:check        # Check formatting
+pnpm lint:check          # Check linting
+pnpm typecheck           # Type check
+pnpm build               # Build test
+```
+
+---
+
+## 📖 Learning Resources
+
+This frontend demonstrates:
+
+- **Astro SSR** - Server-side rendering with Astro
+- **React Integration** - Using React components in Astro
+- **Tailwind CSS v4** - Modern utility-first CSS
+- **TypeScript** - Type-safe frontend code
+- **API Communication** - Centralized HTTP client
+- **Session Management** - Cookie-based authentication
+- **Middleware** - Route protection and validation
+
+---
+
+## � Related Documentation
+
+- **Root README**: See [../../README.md](../../README.md) for monorepo overview
+- **Backend API**: See [../api/README.md](../api/README.md) for backend documentation (if available)
+- **Astro Docs**: [https://docs.astro.build](https://docs.astro.build)
+- **React Docs**: [https://react.dev](https://react.dev)
+- **Tailwind CSS**: [https://tailwindcss.com](https://tailwindcss.com)
+
+---
+
+**Happy coding! 🚀**
