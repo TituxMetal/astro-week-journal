@@ -8,7 +8,7 @@ const __dirname = dirname(__filename)
 export default [
   ...nodeConfig,
   {
-    ignores: ['eslint.config.mjs']
+    ignores: ['eslint.config.mjs', 'prisma/**']
   },
   {
     languageOptions: {
