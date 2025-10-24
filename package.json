@@ -13,6 +13,7 @@
     "format:check": "prettier --check \"**/*.{ts,tsx,astro,md,json}\""
   },
   "devDependencies": {
+    "eslint": "^9.38.0",
     "prettier": "^3.4.0",
     "prettier-plugin-astro": "^0.14.1",
     "prettier-plugin-tailwindcss": "^0.7.1",
