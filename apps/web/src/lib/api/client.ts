@@ -32,7 +32,15 @@ const request = async <T>(endpoint: string, options?: RequestOptions): Promise<T
   })
 
   if (!response.ok) {
-    throw new Error(`API Error: ${response.statusText}`)
+    let errorBody: string | undefined
+    try {
+      errorBody = await response.text()
+    } catch {
+      errorBody = undefined
+    }
+
+    const errorMessage = `API Error: ${response.status} ${response.statusText}${errorBody ? `\nResponse: ${errorBody}` : ''}`
+    throw new Error(errorMessage)
   }
 
   return response.json()

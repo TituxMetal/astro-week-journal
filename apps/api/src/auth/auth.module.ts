@@ -9,8 +9,12 @@ import { createBetterAuthConfig } from './infrastructure/config/betterAuth.confi
 @Module({
   imports: [
     DatabaseModule,
-    BetterAuthModule.forRoot({
-      auth: createBetterAuthConfig(new PrismaService())
+    BetterAuthModule.forRootAsync({
+      imports: [DatabaseModule],
+      inject: [PrismaService],
+      useFactory: (prismaService: PrismaService) => ({
+        auth: createBetterAuthConfig(prismaService)
+      })
     })
   ]
 })

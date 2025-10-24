@@ -3,8 +3,12 @@ import { useState } from 'react'
 import { Button } from '~/components/Button'
 import { authApi } from '~/lib/api/auth'
 
-export const AuthForm = () => {
-  const [isLogin, setIsLogin] = useState(true)
+interface AuthFormProps {
+  mode: 'login' | 'signup'
+}
+
+export const AuthForm = ({ mode }: AuthFormProps) => {
+  const [isLogin, setIsLogin] = useState(mode === 'login')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [name, setName] = useState('')
