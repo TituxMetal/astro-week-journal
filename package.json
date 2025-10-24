@@ -9,10 +9,13 @@
     "lint": "turbo run lint",
     "typecheck": "turbo run typecheck",
     "clean": "turbo run clean && rm -rf node_modules",
-    "format": "prettier --write \"**/*.{ts,tsx,md,json}\""
+    "format": "prettier --write \"**/*.{ts,tsx,astro,md,json}\"",
+    "format:check": "prettier --check \"**/*.{ts,tsx,astro,md,json}\""
   },
   "devDependencies": {
     "prettier": "^3.4.0",
+    "prettier-plugin-astro": "^0.14.1",
+    "prettier-plugin-tailwindcss": "^0.7.1",
     "turbo": "^2.3.0"
   },
   "packageManager": "pnpm@10.18.0",
@@ -21,4 +24,3 @@
     "pnpm": ">=10.18.0"
   }
 }
-
