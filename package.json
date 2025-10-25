@@ -13,11 +13,15 @@
     "lint": "turbo run lint",
     "lint:check": "turbo run lint:check",
     "typecheck": "turbo run typecheck",
+    "test": "turbo run test",
+    "test:watch": "turbo run test:watch",
+    "test:cov": "turbo run test:cov",
     "clean": "turbo run clean && rm -rf node_modules",
     "format": "prettier --write \"**/*.{ts,tsx,astro,md,json}\"",
     "format:check": "prettier --check \"**/*.{ts,tsx,astro,md,json}\""
   },
   "devDependencies": {
+    "@types/bun": "^1.3.1",
     "eslint": "^9.38.0",
     "prettier": "^3.4.0",
     "prettier-plugin-astro": "^0.14.1",

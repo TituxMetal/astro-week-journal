@@ -10,6 +10,9 @@
     "typecheck": "astro check",
     "lint": "eslint . --fix",
     "lint:check": "eslint .",
+    "test": "bun test",
+    "test:watch": "bun test --watch",
+    "test:cov": "bun test --coverage",
     "clean": "rm -rf .astro dist node_modules"
   },
   "dependencies": {
