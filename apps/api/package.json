@@ -6,10 +6,10 @@
   "scripts": {
     "build": "nest build",
     "dev": "nest start --watch",
-    "start": "node dist/main",
+    "start": "bun dist/src/main.js",
     "start:dev": "nest start --watch",
     "start:debug": "nest start --debug --watch",
-    "start:prod": "node dist/main",
+    "start:prod": "bun dist/src/main.js",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
     "lint:check": "eslint \"{src,apps,libs,test}/**/*.ts\"",
     "typecheck": "tsc --noEmit",
