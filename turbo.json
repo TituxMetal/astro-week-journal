@@ -19,6 +19,17 @@
     "typecheck": {
       "dependsOn": ["^typecheck"]
     },
+    "test": {
+      "dependsOn": ["^test"]
+    },
+    "test:watch": {
+      "cache": false,
+      "persistent": true
+    },
+    "test:cov": {
+      "dependsOn": ["^test:cov"],
+      "outputs": ["coverage/**"]
+    },
     "clean": {
       "cache": false
     }
