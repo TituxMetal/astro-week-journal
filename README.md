@@ -7,7 +7,7 @@ backend** with **Hexagonal Architecture** and an **Astro frontend** with React.
 
 ## 🎯 Project Overview
 
-**Astro Week Journal** is a fullstack web application built with a monorepo structure using **pnpm
+**Astro Week Journal** is a fullstack web application built with a monorepo structure using **Bun
 workspaces** and **Turborepo**. The project demonstrates best practices for:
 
 - **Hexagonal Architecture** (Ports & Adapters pattern) in the backend
@@ -36,11 +36,10 @@ workspaces** and **Turborepo**. The project demonstrates best practices for:
 
 ### Monorepo & DevTools
 
-- **pnpm** 10.18.0 - Fast, disk space efficient package manager
+- **Bun** 1.3.1 - Fast all-in-one JavaScript runtime and package manager
 - **Turborepo** 2.3.0 - High-performance build system
 - **ESLint** 9.38.0 - Code quality with flat config format
 - **Prettier** 3.4.0 - Code formatter
-- **Node.js** 22.21.0 - JavaScript runtime
 
 ---
 
@@ -65,7 +64,7 @@ astro-week-journal/
 ├── packages/
 │   ├── eslint-config/         # Shared ESLint configurations
 │   └── typescript-config/     # Shared TypeScript configurations
-├── pnpm-workspace.yaml        # pnpm workspaces configuration
+├── bun.lockb                  # Bun lockfile
 ├── turbo.json                 # Turborepo configuration
 └── package.json               # Root package.json with scripts
 ```
@@ -79,14 +78,12 @@ astro-week-journal/
 
 ## 📋 Prerequisites
 
-- **Node.js**: v22.21.0 or higher
-- **pnpm**: v10.18.0 or higher
+- **Bun**: v1.3.1 or higher
 
-Check your versions:
+Check your version:
 
 ```bash
-node --version
-pnpm --version
+bun --version
 ```
 
 ---
@@ -103,7 +100,7 @@ cd astro-week-journal
 ### 2. Install dependencies
 
 ```bash
-pnpm install
+bun install
 ```
 
 ### 3. Set up environment variables
@@ -116,19 +113,19 @@ Each app has its own environment variables. See the app-specific READMEs for det
 ### 4. Generate Prisma Client
 
 ```bash
-pnpm --filter api exec prisma generate
+bun --filter @repo/api prisma generate
 ```
 
 ### 5. Run database migrations
 
 ```bash
-pnpm --filter api exec prisma migrate dev
+bun --filter @repo/api prisma migrate dev
 ```
 
 ### 6. (Optional) Seed the database
 
 ```bash
-pnpm --filter api exec prisma db seed
+bun --filter @repo/api prisma db seed
 ```
 
 ---
@@ -138,7 +135,7 @@ pnpm --filter api exec prisma db seed
 ### Run both apps in development mode
 
 ```bash
-pnpm dev
+bun dev
 ```
 
 This starts:
@@ -150,10 +147,10 @@ This starts:
 
 ```bash
 # Frontend only
-pnpm --filter web dev
+bun --filter @repo/web dev
 
 # Backend only
-pnpm --filter api dev
+bun --filter @repo/api dev
 ```
 
 ---
@@ -166,41 +163,47 @@ All commands run from the **root directory**:
 
 ```bash
 # Development
-pnpm dev                  # Start all apps in dev mode
+bun dev                  # Start all apps in dev mode
 
 # Building
-pnpm build               # Build all apps for production
+bun build                # Build all apps for production
+
+# Testing
+bun test                 # Run all tests
+bun test:watch           # Run tests in watch mode
+bun test:cov             # Run tests with coverage
 
 # Code Quality
-pnpm lint                # Lint and fix all code
-pnpm lint:check          # Check linting without fixing
-pnpm typecheck           # Type check all apps
-pnpm format              # Format all files with Prettier
-pnpm format:check        # Check formatting without fixing
+bun lint                 # Lint and fix all code
+bun lint:check           # Check linting without fixing
+bun typecheck            # Type check all apps
+bun format               # Format all files with Prettier
+bun format:check         # Check formatting without fixing
 
 # Cleanup
-pnpm clean               # Remove all build artifacts and node_modules
+bun clean                # Remove all build artifacts and node_modules
 ```
 
 ### Specific Apps (Using --filter)
 
 ```bash
 # Frontend (web app)
-pnpm --filter web dev           # Start frontend dev server
-pnpm --filter web build         # Build frontend for production
-pnpm --filter web lint          # Lint frontend code
-pnpm --filter web typecheck     # Type check frontend
-pnpm --filter web preview       # Preview production build
+bun --filter @repo/web dev           # Start frontend dev server
+bun --filter @repo/web build         # Build frontend for production
+bun --filter @repo/web lint          # Lint frontend code
+bun --filter @repo/web typecheck     # Type check frontend
+bun --filter @repo/web preview       # Preview production build
+bun --filter @repo/web test          # Run frontend tests
 
 # Backend (api app)
-pnpm --filter api dev           # Start backend dev server
-pnpm --filter api build         # Build backend for production
-pnpm --filter api lint          # Lint backend code
-pnpm --filter api typecheck     # Type check backend
-pnpm --filter api start:debug   # Start backend with debugger
-pnpm --filter api test          # Run backend tests
-pnpm --filter api test:watch    # Run backend tests in watch mode
-pnpm --filter api test:cov      # Run backend tests with coverage
+bun --filter @repo/api dev           # Start backend dev server
+bun --filter @repo/api build         # Build backend for production
+bun --filter @repo/api lint          # Lint backend code
+bun --filter @repo/api typecheck     # Type check backend
+bun --filter @repo/api start:debug   # Start backend with debugger
+bun --filter @repo/api test          # Run backend tests
+bun --filter @repo/api test:watch    # Run backend tests in watch mode
+bun --filter @repo/api test:cov      # Run backend tests with coverage
 ```
 
 ---
@@ -242,6 +245,7 @@ git push origin feature/your-feature-name
 - ✅ **Linting** - ESLint code quality checks
 - ✅ **Type Checking** - TypeScript compilation
 - ✅ **Build** - Build both apps for production
+- ✅ **Test Execution** - Run all tests (12 tests: 6 backend + 6 frontend)
 - ✅ **Prisma Generate** - Generate Prisma Client types
 
 All checks must pass before merging to `main`.
@@ -277,11 +281,12 @@ For detailed frontend architecture, see [apps/web/README.md](apps/web/README.md)
 
 This project is designed as a **learning resource** for solo developers. Key concepts:
 
-- **Monorepo Management** - Using pnpm workspaces and Turborepo
+- **Monorepo Management** - Using Bun workspaces and Turborepo
 - **Hexagonal Architecture** - Building maintainable backend systems
 - **TypeScript Best Practices** - Strict type safety across the stack
 - **Modern Frontend** - Astro with React and Tailwind CSS v4
 - **Authentication** - Implementing secure auth with Better Auth
+- **Bun Runtime** - Using Bun for package management, testing, and runtime
 - **CI/CD** - Automated testing and deployment with GitHub Actions
 
 ---
@@ -292,7 +297,7 @@ This is a solo learning project. For improvements or bug fixes:
 
 1. Create a feature branch from `develop`
 2. Make your changes
-3. Ensure all checks pass: `pnpm format && pnpm lint && pnpm typecheck && pnpm build`
+3. Ensure all checks pass: `bun format && bun lint && bun typecheck && bun build && bun test`
 4. Create a pull request with a clear description
 
 ---
