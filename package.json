@@ -1,6 +1,6 @@
 {
   "name": "astro-week-journal-monorepo",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "private": true,
   "description": "Astro Week Journal - Turborepo monorepo with NestJS backend and Astro frontend",
   "workspaces": [
