@@ -72,15 +72,14 @@ apps/web/
 
 ### Prerequisites
 
-- Node.js v22.21.0 or higher
-- pnpm v10.18.0 or higher
+- Bun v1.3.1 or higher
 
 ### Installation
 
 From the **root directory** of the monorepo:
 
 ```bash
-pnpm install
+bun install
 ```
 
 ### Environment Variables
@@ -98,13 +97,13 @@ This variable tells the frontend where to find the backend API.
 Start the development server from the **root directory**:
 
 ```bash
-pnpm dev
+bun dev
 ```
 
 Or run only the web app from the root directory:
 
 ```bash
-pnpm --filter web dev
+bun --filter @repo/web dev
 ```
 
 The frontend will be available at [http://localhost:4321](http://localhost:4321)
@@ -119,12 +118,13 @@ For monorepo-level commands (dev, build, lint, format, typecheck, clean), see
 Run frontend-specific commands from the **root directory** using `--filter`:
 
 ```bash
-pnpm --filter web dev           # Start dev server
-pnpm --filter web build         # Build for production
-pnpm --filter web preview       # Preview production build
-pnpm --filter web lint          # Lint and fix code
-pnpm --filter web lint:check    # Check linting without fixing
-pnpm --filter web typecheck     # Type check with Astro
+bun --filter @repo/web dev           # Start dev server
+bun --filter @repo/web build         # Build for production
+bun --filter @repo/web preview       # Preview production build
+bun --filter @repo/web lint          # Lint and fix code
+bun --filter @repo/web lint:check    # Check linting without fixing
+bun --filter @repo/web typecheck     # Type check with Astro
+bun --filter @repo/web test          # Run tests with Bun test runner
 ```
 
 ---
@@ -226,13 +226,25 @@ Reusable authentication form component:
 
 ## 🧪 Testing
 
+This frontend uses **Bun's native test runner** for all tests.
+
+Run tests from the **root directory**:
+
+```bash
+bun --filter @repo/web test          # Run all tests
+bun --filter @repo/web test:watch    # Run tests in watch mode
+bun --filter @repo/web test:cov      # Run tests with coverage
+```
+
+### Quality Checks
+
 Run quality checks from the **root directory**:
 
 ```bash
-pnpm format:check        # Check formatting
-pnpm lint:check          # Check linting
-pnpm typecheck           # Type check
-pnpm build               # Build test
+bun format:check        # Check formatting
+bun lint:check          # Check linting
+bun typecheck           # Type check
+bun build               # Build test
 ```
 
 ---

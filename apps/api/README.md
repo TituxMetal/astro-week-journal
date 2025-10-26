@@ -33,7 +33,7 @@ This backend application provides:
 - **SQLite** with libSQL adapter - Lightweight database
 - **TypeScript** 5.9.3 - Type-safe backend code
 - **ESLint** 9.38.0 - Code quality with flat config format
-- **Jest** 30.2.0 - Testing framework
+- **Bun** 1.3.1 - JavaScript runtime and test runner
 - **Prettier** 3.4.0 - Code formatter
 
 ---
@@ -69,14 +69,12 @@ apps/api/
 
 ## 📋 Prerequisites
 
-- **Node.js**: v22.21.0 or higher
-- **pnpm**: v10.18.0 or higher
+- **Bun**: v1.3.1 or higher
 
-Check your versions:
+Check your version:
 
 ```bash
-node --version
-pnpm --version
+bun --version
 ```
 
 ---
@@ -88,7 +86,7 @@ pnpm --version
 From the **root directory** of the monorepo:
 
 ```bash
-pnpm install
+bun install
 ```
 
 ### 2. Set up environment variables
@@ -112,19 +110,19 @@ BETTER_AUTH_URL=http://localhost:3000
 ### 3. Generate Prisma Client
 
 ```bash
-pnpm --filter api exec prisma generate
+bun --filter @repo/api prisma generate
 ```
 
 ### 4. Run database migrations
 
 ```bash
-pnpm --filter api exec prisma migrate dev
+bun --filter @repo/api prisma migrate dev
 ```
 
 ### 5. (Optional) Seed the database
 
 ```bash
-pnpm --filter api exec prisma db seed
+bun --filter @repo/api prisma db seed
 ```
 
 ---
@@ -136,13 +134,13 @@ pnpm --filter api exec prisma db seed
 From the **root directory**:
 
 ```bash
-pnpm dev
+bun dev
 ```
 
 Or run only the backend from the root directory:
 
 ```bash
-pnpm --filter api dev
+bun --filter @repo/api dev
 ```
 
 The backend API will be available at [http://localhost:3000](http://localhost:3000)
@@ -157,24 +155,24 @@ For monorepo-level commands (dev, build, lint, format, typecheck, clean), see
 Run backend-specific commands from the **root directory** using `--filter`:
 
 ```bash
-pnpm --filter api dev           # Start dev server with hot reload
-pnpm --filter api build         # Build for production
-pnpm --filter api start:debug   # Start with debugger
-pnpm --filter api test          # Run tests
-pnpm --filter api test:watch    # Run tests in watch mode
-pnpm --filter api test:cov      # Run tests with coverage
+bun --filter @repo/api dev           # Start dev server with hot reload
+bun --filter @repo/api build         # Build for production
+bun --filter @repo/api start:debug   # Start with debugger
+bun --filter @repo/api test          # Run tests with Bun test runner
+bun --filter @repo/api test:watch    # Run tests in watch mode
+bun --filter @repo/api test:cov      # Run tests with coverage
 ```
 
 ### Database Commands (Prisma)
 
-Run from the **root directory** using `--filter`:
+Run from the **monorepo root**:
 
 ```bash
-pnpm --filter api exec prisma migrate dev      # Create and run migrations
-pnpm --filter api exec prisma migrate reset    # Reset database to initial state
-pnpm --filter api exec prisma db seed          # Seed database with initial data
-pnpm --filter api exec prisma studio           # Open Prisma Studio (visual DB browser)
-pnpm --filter api exec prisma generate         # Generate Prisma Client types
+bun --filter @repo/api prisma migrate dev      # Create and run migrations
+bun --filter @repo/api prisma migrate reset    # Reset database to initial state
+bun --filter @repo/api prisma db seed          # Seed database with initial data
+bun --filter @repo/api prisma studio           # Open Prisma Studio (visual DB browser)
+bun --filter @repo/api prisma generate         # Generate Prisma Client types
 ```
 
 ---
@@ -328,18 +326,28 @@ curl -X POST http://localhost:3000/api/auth/sign-out \
 
 ## 🧪 Testing
 
-Run tests from the **apps/api** directory:
+This backend uses **Bun's native test runner** for all tests.
+
+Run tests from the **root directory**:
 
 ```bash
 # Run all tests
-pnpm test
+bun --filter @repo/api test
 
 # Run tests in watch mode
-pnpm test:watch
+bun --filter @repo/api test:watch
 
 # Run tests with coverage
-pnpm test:cov
+bun --filter @repo/api test:cov
 ```
+
+### Test Structure
+
+- **Unit Tests**: Service layer tests (e.g., `app.service.spec.ts`)
+- **E2E Tests**: Controller endpoint tests (e.g., `app.controller.spec.ts`)
+- **Test Runner**: Bun test runner with Jest-compatible API
+
+All tests use `import { describe, it, expect } from 'bun:test'` for test definitions.
 
 ---
 
