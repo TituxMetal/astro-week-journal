@@ -26,7 +26,33 @@ export const createBetterAuthConfig = (prisma: PrismaClient): ReturnType<typeof 
       expiresIn: 60 * 60 * 24 * 7, // 7 days
       updateAge: 60 * 60 * 24 // 1 day
     },
-    trustedOrigins: ['http://localhost:4321', 'http://localhost:3000']
+    trustedOrigins: ['http://localhost:4321', 'http://localhost:3000'],
+    // 🎯 Include custom user fields in the session
+    user: {
+      additionalFields: {
+        role: {
+          type: 'string',
+          required: true,
+          defaultValue: 'user'
+        }
+      }
+    },
+    // 🎯 Database hooks for setting default values
+    databaseHooks: {
+      user: {
+        create: {
+          before: async user => {
+            // Set default role to 'user' if not provided
+            return {
+              data: {
+                ...user,
+                role: user.role || 'user'
+              }
+            }
+          }
+        }
+      }
+    }
     // 🎯 Easy to add OAuth providers:
     // socialProviders: {
     //   github: {

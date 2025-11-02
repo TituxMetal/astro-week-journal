@@ -20,6 +20,7 @@
     "prisma": "prisma"
   },
   "dependencies": {
+    "@casl/ability": "^6.7.3",
     "@libsql/client": "^0.15.15",
     "@nestjs/common": "^11.1.7",
     "@nestjs/config": "^4.0.2",
